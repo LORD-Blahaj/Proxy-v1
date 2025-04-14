@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy PWA</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
+    <script>
+        async function search() {
+            const query = document.getElementById('searchInput').value;
+            const resultFrame = document.getElementById('resultFrame');
+            const proxyUrl = `/proxy?url=${encodeURIComponent('https://www.google.com/search?q=' + query)}`;
+            resultFrame.src = proxyUrl;
+        }
+    </script>
+</head>
+<body>
+    <h1>Search Proxy</h1>
+    <input type="text" id="searchInput" placeholder="Type your query here">
+    <button onclick="search()">Search</button>
+    <iframe id="resultFrame" style="width: 100%; height: 80vh; border: none;"></iframe>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(() => console.log('Service Worker Registered'))
+                .catch(err => console.error('Service Worker Registration Failed:', err));
+        }
+    </script>
+</body>
+</html>
