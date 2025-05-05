@@ -1,6 +1,6 @@
 {
-  "name": "Proxy PWA",
-  "short_name": "Proxy",
+  "name": "PWAv2",
+  "short_name": "PWA",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
